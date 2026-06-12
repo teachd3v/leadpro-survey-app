@@ -1,0 +1,7 @@
+No,Kategori,Pertanyaan / Field,Tipe Input / Pilihan
+1,Identitas Responden,Nama Pengisi Survey,Teks Singkat
+2,Identitas Responden,Kota/Kabupaten Domisili saat ini,Teks Singkat
+3,Profil Hubungan,Apa hubungan Anda dengan yang bersangkutan?,"Tim Leadership Project, Penerima Manfaat Leadership Project, Volunteer Leadership Project, Mitra"
+4,Saran & Masukan,Berikan pesan selama anda bergabung/terlibat dalam leadership project yang dijalankan!,Teks Panjang (Paragraf)
+5,Saran & Masukan,Berikan Kritik anda terkait pelaksanaan leadership project,Teks Panjang (Paragraf)
+6,Saran & Masukan,Berikan saran anda yang membangun demi keberlanjutan kegiatan leadership project Awardee BAKTI NUSA 15,Teks Panjang (Paragraf)
