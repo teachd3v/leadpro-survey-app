@@ -5,8 +5,8 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 
 export const metadata = {
-  title: 'Evaluasi Publik BAKTI NUSA',
-  description: 'Form evaluasi publik untuk awardee BAKTI NUSA',
+  title: 'Leadership Project Impact Survey',
+  description: 'Form evaluasi impact leadpro awardee BAKTI NUSA',
 };
 
 import ScrollToTop from '@/components/ScrollToTop';
