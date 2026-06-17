@@ -130,9 +130,9 @@ export default async function DashboardPage({ params }) {
             saranList.map((s, i) => (
               <div key={i} style={{ marginBottom: '1rem' }}>
                 <div style={{ background: '#f8fafc', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(0,0,0,0.05)' }}>
-                  {s.pesanTerlibat && <div style={{marginBottom: '0.5rem'}}><strong style={{fontSize: '0.85rem', color: 'var(--primary)'}}>Pesan:</strong> <br/><span style={{ fontSize: '0.95rem', lineHeight: 1.5, color: '#111827' }}>"{s.pesanTerlibat}"</span></div>}
-                  {s.kritikPelaksanaan && <div style={{marginBottom: '0.5rem'}}><strong style={{fontSize: '0.85rem', color: 'var(--primary)'}}>Kritik:</strong> <br/><span style={{ fontSize: '0.95rem', lineHeight: 1.5, color: '#111827' }}>"{s.kritikPelaksanaan}"</span></div>}
-                  {s.saranKeberlanjutan && <div><strong style={{fontSize: '0.85rem', color: 'var(--primary)'}}>Saran:</strong> <br/><span style={{ fontSize: '0.95rem', lineHeight: 1.5, color: '#111827' }}>"{s.saranKeberlanjutan}"</span></div>}
+                  {s.pesanTerlibat && <div style={{marginBottom: '0.5rem'}}><strong style={{fontSize: '0.85rem', color: 'var(--primary)'}}>Pesan:</strong> <br/><span style={{ fontSize: '0.95rem', lineHeight: 1.5, color: '#111827' }}>&ldquo;{s.pesanTerlibat}&rdquo;</span></div>}
+                  {s.kritikPelaksanaan && <div style={{marginBottom: '0.5rem'}}><strong style={{fontSize: '0.85rem', color: 'var(--primary)'}}>Kritik:</strong> <br/><span style={{ fontSize: '0.95rem', lineHeight: 1.5, color: '#111827' }}>&ldquo;{s.kritikPelaksanaan}&rdquo;</span></div>}
+                  {s.saranKeberlanjutan && <div><strong style={{fontSize: '0.85rem', color: 'var(--primary)'}}>Saran:</strong> <br/><span style={{ fontSize: '0.95rem', lineHeight: 1.5, color: '#111827' }}>&ldquo;{s.saranKeberlanjutan}&rdquo;</span></div>}
                 </div>
               </div>
             ))

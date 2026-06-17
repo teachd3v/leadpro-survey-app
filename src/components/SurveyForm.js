@@ -13,6 +13,7 @@ export default function SurveyForm({ awardee, rubrics }) {
     kritikPelaksanaan: '',
     saranKeberlanjutan: ''
   });
+  const [hubunganLainnya, setHubunganLainnya] = useState('');
   const [status, setStatus] = useState('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [modalMsg, setModalMsg] = useState(null);
@@ -37,8 +38,9 @@ export default function SurveyForm({ awardee, rubrics }) {
         document.getElementById('field-kota')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
-      if (!formData.hubungan) {
+      if (!formData.hubungan || (formData.hubungan === 'Lainnya' && !hubunganLainnya.trim())) {
         document.getElementById('field-hubungan')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.getElementById('input-hubungan-lainnya')?.focus();
         return;
       }
     } else if (step > 1 && step <= 1 + categories.length) {
@@ -94,6 +96,7 @@ export default function SurveyForm({ awardee, rubrics }) {
           namaAwardee: awardee['Nama Awardee'],
           wilayah: awardee.Wilayah,
           ...formData,
+          hubungan: formData.hubungan === 'Lainnya' ? hubunganLainnya.trim() : formData.hubungan,
           namaEvaluator: formData.namaEvaluator
         })
       });
@@ -187,7 +190,17 @@ export default function SurveyForm({ awardee, rubrics }) {
                 </div>
                 <div id="field-hubungan" className="form-group" style={{ padding: '0.5rem', borderRadius: '12px' }}>
                   <label className="form-label">Apa hubungan Anda dengan yang bersangkutan? *</label>
-                  <select className="form-select" value={formData.hubungan} onChange={e => setFormData({ ...formData, hubungan: e.target.value })}>
+                  <select
+                    className="form-select"
+                    value={formData.hubungan}
+                    onChange={e => {
+                      const val = e.target.value;
+                      setFormData({ ...formData, hubungan: val });
+                      if (val !== 'Lainnya') {
+                        setHubunganLainnya('');
+                      }
+                    }}
+                  >
                     <option value="">Pilih Hubungan...</option>
                     <option value="Tim Leadership Project">Tim Leadership Project</option>
                     <option value="Penerima Manfaat Leadership Project">Penerima Manfaat Leadership Project</option>
@@ -195,6 +208,18 @@ export default function SurveyForm({ awardee, rubrics }) {
                     <option value="Mitra">Mitra</option>
                     <option value="Lainnya">Lainnya</option>
                   </select>
+                  {formData.hubungan === 'Lainnya' && (
+                    <div style={{ marginTop: '0.75rem' }} className="animate-fade-in">
+                      <input
+                        id="input-hubungan-lainnya"
+                        type="text"
+                        className="form-input"
+                        placeholder="Tuliskan hubungan Anda dengan awardee di sini..."
+                        value={hubunganLainnya}
+                        onChange={e => setHubunganLainnya(e.target.value)}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             )}
