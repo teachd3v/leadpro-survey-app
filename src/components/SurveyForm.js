@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function SurveyForm({ awardee, rubrics }) {
   const [step, setStep] = useState(1);
@@ -18,6 +18,29 @@ export default function SurveyForm({ awardee, rubrics }) {
   const [errorMsg, setErrorMsg] = useState('');
   const [modalMsg, setModalMsg] = useState(null);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [timeLeft, setTimeLeft] = useState('');
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const difference = +new Date('2026-06-24T23:59:59+07:00') - +new Date();
+      if (difference <= 0) {
+        setTimeLeft('Survey telah ditutup!');
+        window.location.reload();
+        return;
+      }
+
+      const hours = Math.floor(difference / (1000 * 60 * 60));
+      const minutes = Math.floor((difference / 1000 / 60) % 60);
+      const seconds = Math.floor((difference / 1000) % 60);
+
+      setTimeLeft(`${hours} jam ${minutes} menit ${seconds} detik`);
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const categories = [...new Set(rubrics.map(r => r['Kategori']))];
   const totalSteps = 2 + categories.length;
@@ -162,6 +185,28 @@ export default function SurveyForm({ awardee, rubrics }) {
             </div>
           </div>
         </div>
+
+        {status !== 'success' && timeLeft && (
+          <div style={{
+            background: 'linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%)',
+            border: '1px solid #f59e0b',
+            borderRadius: '16px',
+            padding: '1rem',
+            marginBottom: '1.5rem',
+            textAlign: 'center',
+            boxShadow: '0 4px 10px rgba(245, 158, 11, 0.1)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.4rem'
+          }}>
+            <div style={{ fontSize: '0.9rem', color: '#b45309', fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+              ⏳ Survey Evaluasi Tutup Nanti Malam Pukul 23:59 WIB!
+            </div>
+            <div style={{ fontSize: '1.1rem', color: '#78350f', fontWeight: 900, fontFamily: 'monospace' }}>
+              Sisa Waktu: {timeLeft}
+            </div>
+          </div>
+        )}
 
         {status === 'success' ? (
           <div className="glass-card" style={{ textAlign: 'center', marginTop: '1rem', padding: '2rem 1rem' }}>
