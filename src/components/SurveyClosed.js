@@ -92,7 +92,7 @@ export default function SurveyClosed({ awardee }) {
             lineHeight: 1.6,
             marginBottom: '1.5rem'
           }}>
-            Mohon maaf, pengisian survey evaluasi untuk <strong>{awardee ? awardee['Nama Awardee'] : 'Awardee'}</strong> telah ditutup pada tanggal <strong>23 Juni pukul 23:59 WIB</strong>. Kami tidak dapat menerima data atau tanggapan baru lagi.
+            Mohon maaf, pengisian survey evaluasi untuk <strong>{awardee ? awardee['Nama Awardee'] : 'Awardee'}</strong> telah ditutup pada tanggal <strong>24 Juni pukul 23:59 WIB</strong>. Kami tidak dapat menerima data atau tanggapan baru lagi.
           </p>
 
           <p style={{

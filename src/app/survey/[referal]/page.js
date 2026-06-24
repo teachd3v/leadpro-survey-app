@@ -22,9 +22,9 @@ export default async function SurveyPage({ params }) {
     return notFound();
   }
 
-  // Cek apakah sudah melewati batas waktu (23 Juni pukul 23:59 WIB)
+  // Cek apakah sudah melewati batas waktu (24 Juni pukul 23:59 WIB)
   const now = new Date();
-  const deadline = new Date('2026-06-23T23:59:59+07:00');
+  const deadline = new Date('2026-06-24T23:59:59+07:00');
   
   if (now > deadline) {
     return <SurveyClosed awardee={awardee} />;
