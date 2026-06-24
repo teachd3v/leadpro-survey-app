@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import Papa from 'papaparse';
 import SurveyForm from '@/components/SurveyForm';
+import SurveyClosed from '@/components/SurveyClosed';
 import { notFound } from 'next/navigation';
 
 function getCsvData(filename) {
@@ -19,6 +20,14 @@ export default async function SurveyPage({ params }) {
 
   if (!awardee || !awardee['Nama Awardee']) {
     return notFound();
+  }
+
+  // Cek apakah sudah melewati batas waktu (23 Juni pukul 23:59 WIB)
+  const now = new Date();
+  const deadline = new Date('2026-06-23T23:59:59+07:00');
+  
+  if (now > deadline) {
+    return <SurveyClosed awardee={awardee} />;
   }
 
   // Ambil rubrik
